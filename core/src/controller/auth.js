@@ -10,10 +10,6 @@ import Exception from "../exceptions/Exception.js";
 
 const myEvent = new EventEmitter();
 
-myEvent.on("event.register.user", (params) => {
-  console.log(`They talked about: ${JSON.stringify(params)}`);
-});
-
 const login = async (req, res) => {
   
   const errors = validationResult(req);
@@ -37,9 +33,7 @@ const login = async (req, res) => {
   }
 };
 const register = async (req, res) => {
-  const { email, password, name, phoneNumber, address } = req.body;
-
-  myEvent.emit(req.body);
+  const { email, password, name, phoneNumber, address, role } = req.body;
   try {
     debugger
     let user = await userRepository.register({
@@ -48,6 +42,7 @@ const register = async (req, res) => {
       name,
       phoneNumber,
       address,
+      role : role || 'USER',
     });
     res.status(HttpStatusCode.CREATE_OK).json({
       message: "Đăng ký thành công",

@@ -35,5 +35,10 @@ export default mongoose.model(
       type: String,
       required: false,
     },
+    role: {
+      type: String,
+      enum: ['USER', 'ADMIN'],
+      default: 'USER'
+    }
   })
 );

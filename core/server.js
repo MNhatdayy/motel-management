@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import * as dotenv from "dotenv";
 import { usersRouter, roomsRouter, authRouter } from "../core/routes/index.js";
 dotenv.config();
@@ -7,6 +8,7 @@ import checkToken from "./src/authentication/auth.js";
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 const port = process.env.PORT ?? 3000;
 
 app.use("/users",checkToken ,usersRouter);

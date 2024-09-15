@@ -3,7 +3,7 @@ import "./register.scss";
 import { Button, Form, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 
-import { register } from "../../../services/AuthController";
+import { register } from "../../service/authController";
 
 const Register = () => {
 	const navigate = useNavigate();
@@ -15,10 +15,11 @@ const Register = () => {
 			return false;
 		} else {
 			register(
-				values.username,
+				values.name,
 				values.email,
 				values.password,
-				values.phone
+				values.phoneNumber,
+				values.address,
 			).then((value) => {
 				if (value) {
 					return navigate("/auth/login");
@@ -49,13 +50,13 @@ const Register = () => {
 				autoComplete="off"
 				onFinish={registerFunction}>
 				<Form.Item
-					label="Username"
-					name="username"
+					label="Name"
+					name="name"
 					labelAlign="left"
 					rules={[
 						{
 							required: true,
-							message: "Please input your username!",
+							message: "Please input your name!",
 						},
 					]}>
 					<Input />
@@ -75,12 +76,25 @@ const Register = () => {
 				</Form.Item>
 				<Form.Item
 					label="Phone"
-					name="phone"
+					name="phoneNumber"
 					labelAlign="left"
 					rules={[
 						{
 							required: true,
 							message: "Please input your phone!",
+						},
+					]}>
+					<Input />
+				</Form.Item>
+
+				<Form.Item
+					label="Address"
+					name="address"
+					labelAlign="left"
+					rules={[
+						{
+							required: true,
+							message: "Please input your address!",
 						},
 					]}>
 					<Input />
