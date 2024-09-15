@@ -6,8 +6,7 @@ import { Button, Input } from "antd";
 import { Menu, Badge } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 
-import { logout, parseToken } from "../../../services/AuthController";
-import { loadCartItems } from "../../../services/CartController";
+import { logout, parseToken } from "../../../service/authController";
 const { Search } = Input;
 
 const onSearch = (value, _e, info) => console.log(info?.source, value);
@@ -78,18 +77,6 @@ const NavbarComponent = () => {
 			setLogin(true);
 			setUsername(tokenInfo.username);
 		}
-
-		const fetchCartItems = async () => {
-			try {
-				const data = await loadCartItems();
-				console.log("Fetched cart items:", data);
-				setCartCount(data.length);
-			} catch (error) {
-				console.error("Error loading cart items:", error);
-			}
-		};
-
-		fetchCartItems();
 	}, [current, cartCount]);
 
 	return (

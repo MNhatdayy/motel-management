@@ -1,12 +1,10 @@
-import "./home.scss";
+import "./homePage.scss";
 import { Button, Layout,Modal } from "antd";
 import Slider from "react-slick";
 import { useEffect } from "react";
-import { loadProducts } from "../../services/HomeController";
+// import { loadProducts } from "../../services/HomeController";
 import { useState } from "react";
 const { Sider, Content } = Layout;
-
-import ProductComponent from "../shop/Products/ProductComponent";
 import { Link } from "react-router-dom";
 const siderStyle = {
 	backgroundColor: "white",
@@ -34,14 +32,10 @@ var settings = {
 
 const HomePage = () => {
 	const [paymentSuccess, setPaymentSuccess] = useState(false);
-	const [products, setProducts] = useState([]);
 	useEffect(() => {
 		checkPaymentSuccess()
-		loadProducts()
-			.then((response) => response)
-			.then((data) => setProducts(data));
+		
 	}, []);
-	console.log(products);
 	const checkPaymentSuccess = async () => {
         const params = new URLSearchParams(window.location.search); // Get query parameters
       	const vnp_ResponseCode = params.get("vnp_ResponseCode");
@@ -142,32 +136,6 @@ const HomePage = () => {
 							</div>
 						</div>
 
-						{/* <div className="sale--wrapper">
-							<div className="title flip-animation">
-								<span>S</span>
-								<span>A</span>
-								<span>L</span>
-								<span>E</span>
-								<span>S</span>
-							</div>
-
-							<div className="list-product">
-								{products.map((value, index) => {
-									return (
-										<ProductComponent
-											key={index}
-											product={value}
-										/>
-									);
-								})}
-							</div>
-							<div className="actions">
-								<Button shape="round" type="primary">
-									View more details
-								</Button>
-							</div>
-						</div> */}
-
 						<div className="gb--wrapper">
 							<div className="title flip-animation">
 								<span>I</span>
@@ -177,17 +145,6 @@ const HomePage = () => {
 								<span>O</span>
 								<span>C</span>
 								<span>K</span>
-							</div>
-
-							<div className="list-product">
-								{products.map((value, index) => {
-									return (
-										<ProductComponent
-											key={index}
-											product={value}
-										/>
-									);
-								})}
 							</div>
 							<div className="actions">
 								<Link to={"/shop/product/all"}>

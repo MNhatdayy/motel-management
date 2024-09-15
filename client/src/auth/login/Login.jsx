@@ -3,7 +3,7 @@ import "./login.scss";
 import { useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Input, message } from "antd";
 
-import { login } from "../../../services/AuthController";
+import { login } from "../../service/authController";
 
 const Login = () => {
 	const [messageApi, contextHolder] = message.useMessage();
@@ -21,11 +21,11 @@ const Login = () => {
 	};
 	const navigate = useNavigate();
 	const loginFunction = async (values) => {
-		login(values.username, values.password)
+		login(values.email, values.password)
 			.then((value) => {
 				if (value !== null) {
 					success();
-					return navigate("/shop");
+					return navigate("/home");
 				}
 			})
 			.catch(() => {
@@ -55,12 +55,12 @@ const Login = () => {
 				autoComplete="off"
 				onFinish={loginFunction}>
 				<Form.Item
-					label="Username"
-					name="username"
+					label="Email"
+					name="email"
 					rules={[
 						{
 							required: true,
-							message: "Please input your username!",
+							message: "Please input your email!",
 						},
 					]}>
 					<Input />
