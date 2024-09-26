@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 
 const headerStyle = {
 	color: "#fff",
-	height: 70,
+	height: 150,
 	backgroundColor: "white",
 };
 const contentStyle = {
@@ -25,9 +25,11 @@ const layoutStyle = {
 	width: "100%",
 };
 
-import HeaderComponent from "./HeaderComponent";
+import NavbarComponent from "../layout/navbar/navbar";
 import FooterComponent from "./FooterComponent";
+import HeaderComponent from "./HeaderComponent"
 import HomePage from "../home/HomePage";
+import Login from "../../auth/login/Login";
 
 const LayoutShop = () => {
 	return (
@@ -35,13 +37,19 @@ const LayoutShop = () => {
 			<div className="full">
 				<div id="container">
 					<Layout style={layoutStyle}>
-						<Header style={headerStyle}>
+						<div>
 							<HeaderComponent />
+						</div>
+						<div>
+							<NavbarComponent />
+						</div>
+						<Header style={headerStyle}>
 						</Header>
 						<Content style={contentStyle}>
 							<Routes>
 								<Route path="" element={<HomePage />} />
 								<Route path="*" element={<HomePage />} />
+								<Route path="auth/login" element={<Login />} />
 							</Routes>
 						</Content>
 						<Footer style={footerStyle}>

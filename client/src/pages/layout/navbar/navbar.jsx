@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import "./navbar.scss";
 import { useState, useEffect } from "react";
-import { Button, Input } from "antd";
+import { Button, Input} from "antd";
 
 import { Menu, Badge } from "antd";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,62 +14,46 @@ const onSearch = (value, _e, info) => console.log(info?.source, value);
 const menu = [
 	{
 		key: "home",
-		label: <Link to="/shop">Home</Link>,
+		label: <Link to="/home">Trang chủ</Link>,
 	},
 	{
-		label: "Products",
-
-		children: [
-			{
-				label: <Link to="/shop/product/kit">Kit</Link>,
-				key: "kit",
-			},
-			{
-				label: <Link to="/shop/product/keycap">Keycap</Link>,
-				key: "keycap",
-			},
-			{
-				label: <Link to="/shop/product/switch">Switch</Link>,
-				key: "switch",
-			},
-			{
-				label: <Link to="/shop/product/accessories">Accessories</Link>,
-				key: "accessories",
-			},
-			{
-				label: <Link to="/shop/product/all">All</Link>,
-				key: "all",
-			},
-		],
+		key: "rent-room",
+		label: <Link to="/rent-room">Cho thuê phòng trọ</Link>,
 	},
 	{
-		key: "contact",
-		label: <Link to="/contact">Contact</Link>,
+		key: "rent-house",
+		label: <Link to="/rent-house">Nhà cho thuê</Link>,
+	},
+	{
+		key: "rent-apartment",
+		label: <Link to="/rent-apartment">Cho thuê căn hộ</Link>,
+	},
+	{
+		key: "shared-accommodation",
+		label: <Link to="/shared-accommodation">Tìm người ở ghép</Link>,
+	},
+	{
+		key: "hotel-motel",
+		label: <Link to="/hotel-motel">Khách sạn nhà nghỉ</Link>,
 	},
 ];
 
 const MenuStyle = {
-	backgroundColor: "white",
 	fontSize: 15,
 	fontWeight: 500,
+	backgroundColor: '#004a8f',
+	color:'#00b96b',
+	marginRight:100,
 };
 
 const NavbarComponent = () => {
 	const [isLoggedIn, setLogin] = useState(false);
 	const [userName, setUsername] = useState("");
 	const [current, setCurrent] = useState("home");
-	const [cartCount, setCartCount] = useState(0);
-	const navigate = useNavigate();
 	const onClick = (e) => {
 		setCurrent(e.key);
 	};
 
-	const logOut = () => {
-		logout();
-		setLogin(false);
-		setUsername("");
-		return navigate("/");
-	};
 
 	useEffect(() => {
 		const tokenInfo = parseToken();
@@ -77,15 +61,11 @@ const NavbarComponent = () => {
 			setLogin(true);
 			setUsername(tokenInfo.username);
 		}
-	}, [current, cartCount]);
+	}, [current]);
 
 	return (
 		<div className="navbar--wrapper">
 			<div className="navbar">
-				<div className="navbar--logo">
-					<i className="fa fa-cloud" aria-hidden="true"></i>
-					<span>FloneStore</span>
-				</div>
 				<div className="navbar--menu">
 					<Menu
 						style={MenuStyle}
@@ -96,51 +76,11 @@ const NavbarComponent = () => {
 					/>
 				</div>
 				<div className="navbar--actions">
-					<div className="navbar--search"></div>
-					<div className="navbar--auth">
-						{isLoggedIn ? (
-							<>
-								<div className="user--wrapper">
-									<p className="username">
-										Hi, <span>{userName}</span>
-									</p>
-
-									<Button
-										type="primary"
-										size="small"
-										onClick={logOut}
-										shape="round">
-										<i
-											className="fa fa-arrow-circle-right"
-											aria-hidden="true"></i>
-									</Button>
-								</div>
-							</>
-						) : (
-							<Link to={"/auth/login"}>
-								<Button type="primary" shape="round">
-									Login
-								</Button>
-							</Link>
-						)}
-					</div>
-					{/* <div className="navbar--liked">
-						<Badge size="small" count={5}>
-							<Link to={"/shop/liked"}>
-								<i className="fa fa-heart"></i>
-							</Link>
-						</Badge>
-					</div> */}
-					<div className="navbar--cart">
-						<Badge size="small" count={cartCount}>
-							<Link to={"/shop/cart"}>
-								<i className="fa fa-cart-shopping"></i>
-							</Link>
-						</Badge>
-					</div>
-					<div className="navbar--cart">
-						<Link to={"/shop/liked"}>
-							<i className="fa fa-heart"></i>
+					<div className="navbar--post-ad">
+						<Link to={"/post-ad"}>
+							<Button type="primary post" shape="round">
+							<i class="fa-regular fa-pen-to-square"></i>Đăng tin
+							</Button>
 						</Link>
 					</div>
 				</div>
