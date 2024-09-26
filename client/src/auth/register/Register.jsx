@@ -1,6 +1,6 @@
 import "./register.scss";
 
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, ConfigProvider } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 
 import { register } from "../../service/authController";
@@ -30,10 +30,22 @@ const Register = () => {
 		}
 	};
 	return (
+		<ConfigProvider
+		theme={{
+			token: {
+				 colorPrimary: '#004a8f', // Main primary color (for buttons, links, etc.)
+       // Outline color when focused
+      colorPrimaryHover: '#003c74', // Hover state color for primary elements
+      controlInteractiveOutline: '#004a8f', // Outline color for interactive controls
+      colorBgContainer: '#ffffff', // Background color of input fields
+      colorBgContainerHover: '#f6ffed', // Background color on hover
+      colorBorder: '#004a8f', // Border color
+			},
+		}}>
 		<div className="wrapper">
-			<h3>Welcome to my shop</h3>
-			<p className="sub-title">Register to shopping</p>
+			<h3>Đăng ký</h3>
 			<Form
+			
 				name="basic"
 				labelCol={{
 					span: 10,
@@ -50,9 +62,10 @@ const Register = () => {
 				autoComplete="off"
 				onFinish={registerFunction}>
 				<Form.Item
-					label="Name"
+					label="Tên tài khoản"
 					name="name"
 					labelAlign="left"
+					
 					rules={[
 						{
 							required: true,
@@ -75,7 +88,7 @@ const Register = () => {
 					<Input />
 				</Form.Item>
 				<Form.Item
-					label="Phone"
+					label="Số điện thoại"
 					name="phoneNumber"
 					labelAlign="left"
 					rules={[
@@ -88,7 +101,7 @@ const Register = () => {
 				</Form.Item>
 
 				<Form.Item
-					label="Address"
+					label="Địa chỉ"
 					name="address"
 					labelAlign="left"
 					rules={[
@@ -101,7 +114,7 @@ const Register = () => {
 				</Form.Item>
 
 				<Form.Item
-					label="Password"
+					label="Mật khẩu"
 					name="password"
 					labelAlign="left"
 					rules={[
@@ -113,7 +126,7 @@ const Register = () => {
 					<Input.Password />
 				</Form.Item>
 				<Form.Item
-					label="Confirm Password"
+					label="Nhập lại mật khẩu"
 					name="confirmPassword"
 					labelAlign="left"
 					rules={[
@@ -141,6 +154,7 @@ const Register = () => {
 				</div>
 			</Form>
 		</div>
+		</ConfigProvider>
 	);
 };
 

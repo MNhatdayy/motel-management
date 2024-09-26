@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import "./login.scss";
+// import "./login.scss";
 import { useNavigate } from "react-router-dom";
-import { Button, Checkbox, Form, Input, message } from "antd";
+import { Button, Checkbox, Form, Input, message, ConfigProvider } from "antd";
 
 import { login } from "../../service/authController";
 
@@ -34,9 +34,24 @@ const Login = () => {
 			});
 	};
 
+	const primary = "#fff";
+
 	return (
+		<ConfigProvider
+		theme={{
+			token: {
+				 colorPrimary: '#004a8f', // Main primary color (for buttons, links, etc.)
+       // Outline color when focused
+      colorPrimaryHover: '#003c74', // Hover state color for primary elements
+      controlInteractiveOutline: '#004a8f', // Outline color for interactive controls
+      colorBgContainer: '#ffffff', // Background color of input fields
+      colorBgContainerHover: '#f6ffed', // Background color on hover
+      colorBorder: '#004a8f', // Border color
+			},
+		}}>
+		
 		<div className="wrapper">
-			<h3>Welcome to my shop</h3>
+			<h3>Đăng nhập</h3>
 			{contextHolder}
 			<Form
 				name="basic"
@@ -67,7 +82,7 @@ const Login = () => {
 				</Form.Item>
 
 				<Form.Item
-					label="Password"
+					label="Mật khẩu"
 					name="password"
 					rules={[
 						{
@@ -85,7 +100,7 @@ const Login = () => {
 						offset: 2,
 						span: 16,
 					}}>
-					<Checkbox>Remember me</Checkbox>
+					<Checkbox>Ghi nhớ tài khoản</Checkbox>
 				</Form.Item>
 
 				<div className="button--wrapper">
@@ -94,24 +109,25 @@ const Login = () => {
 						htmlType="submit"
 						shape="round"
 						block>
-						Login
+						Đăng nhập
 					</Button>
 
 					<Link to={"/auth/register"} width="100%">
 						<Button htmlType="button" shape="round" block>
-							Register
+							Tạo tài khoản mới
 						</Button>
 					</Link>
 				</div>
 				<div className="button--back">
 					<Link to={"/shop"} width="100%">
 						<Button htmlType="button" shape="round" block>
-							Back to shopping
+							Trở lại trang chủ
 						</Button>
 					</Link>
 				</div>
 			</Form>
 		</div>
+		</ConfigProvider>
 	);
 };
 

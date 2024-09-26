@@ -77,7 +77,7 @@ function App() {
                 <Route path="user" element={null} />
               </Route>
             )}
-            <Route path="/home/*" element={<LayoutPage />}>
+            <Route path="/*" element={<LayoutPage />}>
               <Route index element={<HomePage />} />
               <Route path="" element={<HomePage />} />
             </Route>

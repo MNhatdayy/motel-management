@@ -1,0 +1,100 @@
+.header--wrapper {
+    width: 100%;
+    position: fixed; /* Fix the header at the top */
+    top: 0;
+    left: 0;
+    z-index: 100; /* Ensure it stays above the navbar */
+    background-color: white;
+    right: 0;
+    height: 80px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+  }
+  
+  .header--logo {
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #004a8f;
+    margin-left: 160px;
+  }
+  
+  .header--logo i {
+    font-size: 40px;
+    color: #004a8f;
+  }
+  
+  .header--actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header--auth {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user--wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: 160px;
+  }
+  .menuicon{
+    padding-right:10px ;
+  }
+  
+  .username {
+    font-size: 16px;
+    color: #333;
+    padding-top: 15px;
+  }
+  
+  .username span {
+    font-weight: bold;
+    color: #004a8f;
+  }
+  .button.ant-btn-primary.logout{
+    background-color: #004a8f;
+    border-color: #004a8f;
+    color: #fff;
+    margin-right: 10px;
+  }
+  :where(.css-dev-only-do-not-override-183nhay).ant-btn-primary {
+    background-color:#004a8f ;
+  }
+  :where(.css-dev-only-do-not-override-183nhay).ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+    background-color:white ;
+    color: black;
+  }
+
+
+  .auth-buttons{
+    margin-right: 160px;
+  button.ant-btn-primary.login {
+    background-color: #004a8f;
+    border-color: #004a8f;
+    color: #fff;
+    margin-right: 10px;
+  }
+  button.ant-btn-primary.register {
+    background-color: #004a8f;
+    border-color: #004a8f;
+    color: #fff;
+  }
+  
+  :where(.css-dev-only-do-not-override-183nhay).ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+    color: #004a8f;
+    background: #fff;
+    }
+  button.ant-btn-primary i {
+    margin-left: 4px;
+  }
+}
