@@ -56,6 +56,10 @@ const register = async ({ email, password, name, phoneNumber, address }) => {
     password: "******",
   };
 };
+
+const findById = async (userId) => {
+  return await User.findById(userId);
+};
 const getAll = async ({ page, size, searchString }) => {
   print("get all user", OutputType.INFORMATION);
 };
@@ -63,4 +67,5 @@ export default {
   login,
   register,
   getAll,
+  findById,
 };

@@ -3,6 +3,7 @@ import mongoose, { Schema, ObjectId } from "mongoose";
 export default mongoose.model(
   "Review",
   new Schema({
+    id: { type: ObjectId },
     roomId: { type: ObjectId, required: true, ref: "Room" },
     userId: { type: ObjectId, required: true, ref: "User" },
     rating: { type: Number, required: true },

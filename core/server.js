@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
-import { usersRouter, roomsRouter, authRouter } from "../core/routes/index.js";
+import { usersRouter, roomsRouter, authRouter, bookingRouter, messageRouter, reviewRouter} from "../core/routes/index.js";
 dotenv.config();
 import connect from "../core/src/config/database/database.js";
 import checkToken from "./src/authentication/auth.js";
@@ -13,7 +13,10 @@ const port = process.env.PORT ?? 3000;
 
 app.use("/users",checkToken ,usersRouter);
 app.use("/rooms",checkToken ,roomsRouter);
-app.use("/auth", authRouter)
+app.use("/bookings",bookingRouter);
+app.use("/messages",messageRouter);
+app.use("/reviews",reviewRouter);
+app.use("/auth", authRouter);
 app.get("/", (req, res) => {
   res.send("response from root router");
 });
