@@ -1,71 +1,71 @@
 import Exception from "../exceptions/Exception.js";
-import { print, OutputType } from "../helpers/print.js";
 import User from "../models/User.js";
-import bcrypt, { compare } from "bcrypt";
-import jwt from "jsonwebtoken";
-const login = async ({ email, password }) => {
-  let exitsingUser = await User.findOne({ email }).exec();
-  if (exitsingUser) {
-    //note encrypt
-    let isMatch = await bcrypt.compare(password, exitsingUser.password);
-    if (!!isMatch) {
-      //token
-      let token = jwt.sign(
-        {
-          data: exitsingUser,
-        },
-        process.env.JWT_SECRET,
-        {
-          expiresIn: "10 days",
-        }
-      )
-      exitsingUser.token = token
-      return {
-        ...exitsingUser.toObject(),
-        password: "******",
-        token: token
-      }
-    } else {
-      throw new Exception(Exception.WRONG_EMAIL_OR_PASSWORD);
+const update = async (id, data) => {
+  if (!data || Object.keys(data).length === 0) {
+    throw new Exception(Exception.NO_DATA_FOR_UPDATE);
+  }
+  try {
+    const updatedUser = await User.findByIdAndUpdate(id, data, { new: true });
+    if (!updatedUser) {
+      throw new Exception(Exception.USER_NOT_FOUND);
     }
-  } else {
-    throw new Exception(Exception.WRONG_EMAIL_OR_PASSWORD);
+    return updatedUser;
+  } catch (err) {
+    throw new Exception(Exception.CANNOT_UPDATE_USER, err);
   }
 };
-
-const register = async ({ email, password, name, phoneNumber, address }) => {
-  debugger
-  const existingUser = await User.findOne({ email }).exec();
-  if (!!existingUser) {
-    throw new Exception(Exception.EMAIL_EXITS);
+const list = async ({
+  page = 1,
+  limit = 5,
+  sort = "name",
+  order = "asc",
+  ...filters
+}) => {
+  try {
+    debugger;
+    const sortOrder = order.toLowerCase() === "desc" ? -1 : 1;
+    const pageNumber = parseInt(page);
+    const limitNumber = parseInt(limit);
+    const skip = (pageNumber - 1) * limitNumber;
+    const users = await User.find(filters)
+      .sort({ [sort]: sortOrder })
+      .skip(skip)
+      .limit(limitNumber);
+    const totalUsers = await User.countDocuments(filters);
+    const totalPages = Math.ceil(totalUsers / limitNumber);
+    const hasPreviousPage = pageNumber > 1;
+    const hasNextPage = pageNumber < totalPages;
+    return {
+      users,
+      totalUsers,
+      totalPages,
+      currentPage: pageNumber,
+      hasPreviousPage,
+      hasNextPage,
+    };
+  } catch (err) {
+    throw new Exception(Exception.CANNOT_GET_USER);
   }
-
-  const hashedPassword = await bcrypt.hash(
-    password,
-    parseInt(process.env.SALT)
-  );
-  const newUser = await User.create({
-    name,
-    email,
-    password: hashedPassword,
-    phoneNumber,
-    address,
-  });
-  return {
-    ...newUser._doc,
-    password: "******",
-  };
 };
-
-const findById = async (userId) => {
-  return await User.findById(userId);
+const deleteUser = async (id) => {
+  try {
+    return await User.findByIdAndDelete(id);
+  } catch (err) {
+    throw new Exception();
+  }
 };
-const getAll = async ({ page, size, searchString }) => {
-  print("get all user", OutputType.INFORMATION);
+const getById = async (id) => {
+  try {
+    debugger;
+    const user = await User.findById(id);
+    return user.toObject();
+  } catch (err) {
+    throw new Exception(Exception.CANNOT_GET_USER);
+  }
 };
-export default {
-  login,
-  register,
-  getAll,
-  findById,
+export const userRepository = {
+  update,
+  list,
+  deleteUser,
+  getById,
 };

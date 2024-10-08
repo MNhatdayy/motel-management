@@ -709,6 +709,7 @@ mongoose@^8.6.1:
     mongoose "^8.6.1"
     motel-management "file:"
     validator "^13.12.0"
+    yarn "^1.22.22"
 
 mpath@0.9.0:
   version "0.9.0"

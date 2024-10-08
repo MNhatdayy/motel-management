@@ -1,6 +1,6 @@
 import { body, param, validationResult } from "express-validator";
 
-import { userRepository } from "../repositories/index.js";
+import { authRepository } from "../repositories/index.js";
 
 import HttpStatusCode from "../exceptions/HttpStatusCode.js";
 
@@ -11,7 +11,6 @@ import Exception from "../exceptions/Exception.js";
 const myEvent = new EventEmitter();
 
 const login = async (req, res) => {
-  
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res
@@ -20,11 +19,10 @@ const login = async (req, res) => {
   }
   const { email, password } = req.body;
   try {
-    debugger
-    let exstingUser = await userRepository.login({ email, password });
+    let existingUser = await authRepository.login({ email, password });
     res.status(HttpStatusCode.OK).json({
       message: "Đăng nhập thành công",
-      data: exstingUser,
+      data: existingUser,
     });
   } catch (e) {
     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
@@ -35,14 +33,14 @@ const login = async (req, res) => {
 const register = async (req, res) => {
   const { email, password, name, phoneNumber, address, role } = req.body;
   try {
-    debugger
-    let user = await userRepository.register({
+    debugger;
+    let user = await authRepository.register({
       email,
       password,
       name,
       phoneNumber,
       address,
-      role : role || 'USER',
+      role: role || "USER",
     });
     res.status(HttpStatusCode.CREATE_OK).json({
       message: "Đăng ký thành công",

@@ -2,14 +2,18 @@ import { getAuthToken, request, setAuthToken } from "../util/ApiFunction";
 import { jwtDecode } from "jwt-decode";
 
 export const login = async function (email, password) {
-  const res = await request("POST", "/auth/login", {
-    email,
-    password,
-  });
-  if (res.status === 200) {
-    setAuthToken(res.data.token);
-    return res.data.token;
-  } else {
+  try {
+    const res = await request("POST", "/auth/login", {
+      email,
+      password,
+    });
+    if (res.status === 200) {
+      setAuthToken(res.data.data.token);
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Login failed:", error);
     return null;
   }
 };
@@ -27,7 +31,7 @@ export const register = async function (
     password,
     phoneNumber,
     address,
-    role
+    role,
   });
   if (res.status === 200) {
     return res.data.token;
@@ -38,17 +42,21 @@ export const register = async function (
 export const parseToken = () => {
   try {
     const token = getAuthToken();
-    const decoded = jwtDecode(token);
-    const id = decoded.id;
-    const role = decoded.role;
-    const username = decoded.sub;
+    if (!token) {
+      console.error("No token found");
+      return null;
+    }
 
-    return { id, role, username };
+    const decoded = jwtDecode(token);
+    const { id, role, name } = decoded;
+
+    return { id, role, name };
   } catch (error) {
     console.error("Invalid token:", error);
     return null;
   }
 };
+
 export const logout = function () {
-	window.sessionStorage.removeItem("token");
+  window.sessionStorage.removeItem("token");
 };

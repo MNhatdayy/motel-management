@@ -1,16 +1,9 @@
 import express from "express";
-const router = express.Router()
-router.get('/',(req, res) =>{
-    res.send('GET rooms')
-})
-router.post('/create',(req, res) =>{
-    res.send('POST create room')
-})
-router.get('/:id',(req, res) =>{
-    res.send('GET room by id')
-})
-router.put('/update',(req, res) =>{
-    res.send('PUT update room')
-})
-
-export default router
+import { roomController } from "../src/controller/index.js";
+const router = express.Router();
+router.post("/create", roomController.create);
+router.get("/:id", roomController.getById);
+router.put("/update/:id", roomController.update);
+router.delete("/delete/:id", roomController.deleteRoom);
+router.get("/", roomController.list);
+export default router;

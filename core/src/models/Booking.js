@@ -12,4 +12,3 @@ export default mongoose.model(
     created: { type: Date, default: Date.now },
   })
 );
-
