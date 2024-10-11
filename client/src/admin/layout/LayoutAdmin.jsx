@@ -9,9 +9,17 @@ import {
 	UnorderedListOutlined,
 	BarChartOutlined,
 	DollarOutlined,
+	StarOutlined
 } from "@ant-design/icons";
-
+import "./layoutadmin.scss"
 import { Routes, Route, Link } from "react-router-dom";
+import Dashboard from "../pages/dashboard/Dashboard";
+import Users from "../pages/management/users/Users";
+import Bookings from "../pages/management/bookings/Bookings";
+import Reviews from "../pages/management/reviews/Reviews";
+import Rooms from "../pages/management/rooms/Rooms";
+import Messages from "../pages/management/messages/Messages";
+
 const { Header, Sider, Content } = Layout;
 const LayoutAdmin = () => {
 	const [collapsed, setCollapsed] = useState(false);
@@ -40,26 +48,32 @@ const LayoutAdmin = () => {
 		{
 			key: "3",
 			icon: <UnorderedListOutlined />,
-			label: "Category",
-			href: "/admin/category",
+			label: "Room",
+			href: "/admin/room",
 		},
 		{
 			key: "4",
 			icon: <ProductOutlined />,
-			label: "Product",
-			href: "/admin/product",
+			label: "Booking",
+			href: "/admin/booking",
 		},
 		{
 			key: "5",
 			icon: <DollarOutlined />,
-			label: "Invoice",
-			href: "/admin/invoice",
+			label: "Message",
+			href: "/admin/message",
+		},
+		{
+			key: "6",
+			icon: <StarOutlined />,
+			label: "Review",
+			href: "/admin/review",
 		},
 	];
 
 	return (
 		<Layout style={containerStyle}>
-			<Sider trigger={null} collapsible collapsed={collapsed}>
+			<Sider trigger={null} collapsible collapsed={collapsed} width={200}>
 				<div className="demo-logo-vertical" />
 				<Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
 					{menu.map((item) => (
@@ -73,7 +87,7 @@ const LayoutAdmin = () => {
 					))}
 				</Menu>
 			</Sider>
-			<Layout>
+			<Layout> 	
 				<Header style={{ padding: 0, background: colorBgContainer }}>
 					<Button
 						type="text"
@@ -101,13 +115,16 @@ const LayoutAdmin = () => {
 						borderRadius: borderRadiusLG,
 					}}>
 					<Routes>
-						<Route path="dashboard" element={ null} />
-						<Route path="user" element={null} />
+						<Route path="dashboard" element={ Dashboard} />
+						<Route path="user" element={Users} />
+						<Route path="room" element={Rooms} />
+						<Route path="booking" element={Bookings} />
+						<Route path="message" element={Messages} />
+						<Route path="review" element={Reviews} />
 					</Routes>
 				</Content>
 			</Layout>
 		</Layout>
 	);
 };
-
 export default LayoutAdmin;
