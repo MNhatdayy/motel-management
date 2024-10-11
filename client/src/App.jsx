@@ -42,6 +42,7 @@ import LayoutAdmin from "./admin/layout/LayoutAdmin.jsx";
 import { useEffect, useState } from "react";
 import HomePage from "./pages/home/HomePage.jsx";
 import LayoutPage from "../src/pages/layout/LayoutPage.jsx"
+import Users from "./admin/pages/management/users/Users";
 function App() {
   const [isLoggedIn,setLogin] = useState(false);
   const [role, setRole] = useState("");
@@ -65,16 +66,15 @@ function App() {
         },
       }}
     >
-      <div className="full">
+      <div className="full" >
         <Router>
           <Routes>
             {role === "ADMIN" && (
               <Route path="/admin/*" element={<LayoutAdmin />}>
                 <Route index element={<Dashboard />} />
                 <Route path="" element={<Dashboard />} />
-
+                <Route path="user" element={<Users />} />
                 <Route path="dashboard" element={<Dashboard />} />
-                <Route path="user" element={null} />
               </Route>
             )}
             <Route path="/*" element={<LayoutPage />}>
