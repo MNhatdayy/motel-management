@@ -12,8 +12,9 @@ export default class Exception extends Error {
   static CANNOT_REGISTER_USER = "Không thể đăng ký người dùng";
   static WRONG_EMAIL_OR_PASSWORD = "Sai tài khoản hoặc mật khẩu";
   //Exception user
-  static USER_EXITS = "người dùng không tồn tại";
-
+  static USER_EXITS = "người dùng đã tồn tại";
+  static USER_NOT_FOUND = "Không tìm thấy người dùngg";
+  static CANNOT_RESET_PASSWORD = "Không thể đặt lại mật khẩu";
   //Exception room
   static ROOM_EXITS = "phòng không tồn tại";
 

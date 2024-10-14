@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
+import { fileURLToPath } from "url";
 import {
   usersRouter,
   roomsRouter,
@@ -9,10 +10,13 @@ import {
   messageRouter,
   reviewRouter,
 } from "../core/routes/index.js";
+import path from "path";
+import { dirname } from "path";
 dotenv.config();
 import connect from "../core/src/config/database/database.js";
-import checkToken from "./src/authentication/auth.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -23,11 +27,17 @@ app.use("/rooms", roomsRouter);
 app.use("/bookings", bookingRouter);
 app.use("/messages", messageRouter);
 app.use("/reviews", reviewRouter);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/auth", authRouter);
 app.get("/", (req, res) => {
   res.send("response from root router");
 });
+
 app.listen(port, async () => {
-  await connect();
   console.log(`listening on port : ${port}`);
+  try {
+    await connect();
+  } catch (error) {
+    console.error("Database connection failed", error);
+  }
 });

@@ -1,39 +1,6 @@
-// import { useState } from 'react'
 import "./App.scss";
 import { ConfigProvider } from "antd";
-
-// const layoutStyle = {
-// 	overflow: "hidden",
-// 	width: "100%",
-// 	height: "100vh",
-// 	maxWidth: "calc(100% - 8px)",
-// };
-
-// const headerStyle = {
-// 	textAlign: "center",
-// 	color: "#fff",
-// 	width: "100%",
-// 	height: "70px",
-// 	lineHeight: "70px",
-// 	backgroundColor: "white",
-// };
-
-// const contentStyle = {
-// 	textAlign: "center",
-// 	minHeight: 120,
-// 	lineHeight: "120px",
-// 	color: "#fff",
-// 	backgroundColor: "white",
-// };
-
-// const footerStyle = {
-// 	textAlign: "center",
-// 	color: "#fff",
-// 	backgroundColor: "white",
-// };
-
-import { BrowserRouter as Router, Routes, Route,  } from "react-router-dom";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./auth/login/Login.jsx";
 import Register from "./auth/register/Register.jsx";
 import { parseToken } from "./service/authController.js";
@@ -41,10 +8,18 @@ import Dashboard from "./admin/pages/dashboard/Dashboard.jsx";
 import LayoutAdmin from "./admin/layout/LayoutAdmin.jsx";
 import { useEffect, useState } from "react";
 import HomePage from "./pages/home/HomePage.jsx";
-import LayoutPage from "../src/pages/layout/LayoutPage.jsx"
+import LayoutPage from "../src/pages/layout/LayoutPage.jsx";
 import Users from "./admin/pages/management/users/Users";
+import Bookings from "./admin/pages/management/bookings/Bookings.jsx";
+import Messages from "./admin/pages/management/messages/Messages.jsx";
+import Reviews from "./admin/pages/management/reviews/Reviews.jsx";
+import Rooms from "./admin/pages/management/rooms/Rooms.jsx";
+import UpdateUser from "./admin/pages/management/users/Update.jsx";
+import CreateUser from "./admin/pages/management/users/Create.jsx";
+import CreateRoom from "./admin/pages/management/rooms/Create.jsx";
+import UpdateRoom from "./admin/pages/management/rooms/Update.jsx";
 function App() {
-  const [isLoggedIn,setLogin] = useState(false);
+  const [isLoggedIn, setLogin] = useState(false);
   const [role, setRole] = useState("");
   useEffect(() => {
     const tokenInfo = parseToken();
@@ -66,15 +41,25 @@ function App() {
         },
       }}
     >
-      <div className="full" >
+      <div className="full">
         <Router>
           <Routes>
             {role === "ADMIN" && (
               <Route path="/admin/*" element={<LayoutAdmin />}>
                 <Route index element={<Dashboard />} />
-                <Route path="" element={<Dashboard />} />
-                <Route path="user" element={<Users />} />
-                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="user">
+                  <Route path="" element={<Users />} />
+                  <Route path="update/:id" element={<UpdateUser />} />
+                  <Route path="create" element={<CreateUser />} />
+                </Route>
+                <Route path="room">
+                  <Route path="" element={<Rooms />} />
+                  <Route path="update/:id" element={<UpdateRoom />} />
+                  <Route path="create" element={<CreateRoom />} />
+                </Route>
+                <Route path="booking" element={<Bookings />} />
+                <Route path="message" element={<Messages />} />
+                <Route path="review" element={<Reviews />} />
               </Route>
             )}
             <Route path="/*" element={<LayoutPage />}>

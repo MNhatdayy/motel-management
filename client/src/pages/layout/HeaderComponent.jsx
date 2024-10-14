@@ -35,29 +35,29 @@ const HeaderComponent = () => {
   const menu = (
     <Menu>
       <Menu.Item key="1">
-        <i class="fa-solid fa-dollar-sign menuicon"></i>
+        <i className="fa-solid fa-dollar-sign menuicon"></i>
         <Link to="/recharge">Nạp tiền</Link>
       </Menu.Item>
       <hr />
       <Menu.Item key="2">
-        <i class="fa-solid fa-circle-plus menuicon"></i>
+        <i className="fa-solid fa-circle-plus menuicon"></i>
         <Link to="/post">Đăng tin</Link>
       </Menu.Item>
       <Menu.Item key="3">
-        <i class="fa-solid fa-rectangle-list menuicon"></i>
+        <i className="fa-solid fa-rectangle-list menuicon"></i>
         <Link to="/post-management">Quản lý tin đăng</Link>
       </Menu.Item>
       <Menu.Item key="4">
-        <i class="fa-solid fa-clock-rotate-left menuicon"></i>
+        <i className="fa-solid fa-clock-rotate-left menuicon"></i>
         <Link to="/recharge-history">Lịch sử nạp tiền</Link>
       </Menu.Item>
       <Menu.Item key="5">
-        <i class="fa-solid fa-user menuicon"></i>
+        <i className="fa-solid fa-user menuicon"></i>
         <Link to="/account-info">Thông tin tài khoản</Link>
       </Menu.Item>
       <hr />
       <Menu.Item key="6" danger onClick={logOut}>
-        <i class="fa-solid fa-arrow-right-from-bracket menuicon"></i>Thoát
+        <i className="fa-solid fa-arrow-right-from-bracket menuicon"></i>Thoát
       </Menu.Item>
     </Menu>
   );
@@ -80,7 +80,8 @@ const HeaderComponent = () => {
 
                   <Dropdown overlay={menu}>
                     <Button type="primary logout" shape="round">
-                      Quản lý tài khoản <i class="fa-solid fa-angle-down"></i>
+                      Quản lý tài khoản{" "}
+                      <i className="fa-solid fa-angle-down"></i>
                     </Button>
                   </Dropdown>
                 </div>

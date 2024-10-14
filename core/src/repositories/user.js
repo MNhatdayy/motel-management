@@ -1,3 +1,4 @@
+import { ppid } from "node:process";
 import Exception from "../exceptions/Exception.js";
 import User from "../models/User.js";
 const update = async (id, data) => {
@@ -22,7 +23,6 @@ const list = async ({
   ...filters
 }) => {
   try {
-    debugger;
     const sortOrder = order.toLowerCase() === "desc" ? -1 : 1;
     const pageNumber = parseInt(page);
     const limitNumber = parseInt(limit);
@@ -56,11 +56,21 @@ const deleteUser = async (id) => {
 };
 const getById = async (id) => {
   try {
-    debugger;
     const user = await User.findById(id);
     return user.toObject();
   } catch (err) {
     throw new Exception(Exception.CANNOT_GET_USER);
+  }
+};
+const getByEmail = async (email) => {
+  try {
+    const user = User.findOne({ email });
+    if (!user) {
+      throw new Exception(Exception.USER_NOT_FOUND);
+    }
+    return user;
+  } catch (err) {
+    throw err;
   }
 };
 export const userRepository = {
@@ -68,4 +78,5 @@ export const userRepository = {
   list,
   deleteUser,
   getById,
+  getByEmail,
 };

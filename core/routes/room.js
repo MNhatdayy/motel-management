@@ -1,9 +1,10 @@
 import express from "express";
 import { roomController } from "../src/controller/index.js";
+import upload from "../src/milddleware/upload.js";
 const router = express.Router();
-router.post("/create", roomController.create);
+router.post("/create", upload.single("image"), roomController.create);
 router.get("/:id", roomController.getById);
-router.put("/update/:id", roomController.update);
+router.put("/update/:id", upload.single("image"), roomController.update);
 router.delete("/delete/:id", roomController.deleteRoom);
 router.get("/", roomController.list);
 export default router;

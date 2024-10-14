@@ -2,9 +2,13 @@ import { body, param, validationResult } from "express-validator";
 import { roomRepository } from "../repositories/index.js";
 import HttpStatusCode from "../exceptions/HttpStatusCode.js";
 import Exception from "../exceptions/Exception.js";
-
+import fs from "fs";
+import path from "path";
+import { log } from "console";
 const create = async (req, res) => {
   try {
+    const { owner_id, address, size, description, price, available, image } =
+      req.body;
     const room = await roomRepository.create(req.body);
     res.status(HttpStatusCode.CREATE_OK).json({
       message: "Tạo phòng thành công",
@@ -20,17 +24,19 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   try {
     const roomUpdate = await roomRepository.update(req.params.id, req.body);
+
     if (!roomUpdate) {
-      return res.status(HttpStatusCode.NOT_FOUND).json({
+      return res.status(404).json({
         message: "Phòng không tồn tại",
       });
     }
-    res.status(HttpStatusCode.OK).json({
+
+    res.status(200).json({
       message: "Cập nhật thành công",
       data: roomUpdate,
     });
   } catch (err) {
-    res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
+    res.status(500).json({
       message: err.message || "Có lỗi xảy ra trong quá trình cập nhật",
     });
   }
