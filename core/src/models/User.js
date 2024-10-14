@@ -37,8 +37,10 @@ export default mongoose.model(
     },
     role: {
       type: String,
-      enum: ['USER', 'ADMIN'],
-      default: 'USER'
-    }
+      enum: ["USER", "ADMIN"],
+      default: "USER",
+    },
+    otp: { type: String },
+    otpExpiration: { type: Date },
   })
 );

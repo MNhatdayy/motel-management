@@ -9,6 +9,7 @@ const create = async (data) => {
       description: data.description,
       size: data.size,
       available: data.available,
+      image: data.image,
     });
     return {
       ...room._doc,

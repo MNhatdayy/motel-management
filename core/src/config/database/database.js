@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {print, OutputType} from '../../helpers/print.js'
+import { print, OutputType } from "../../helpers/print.js";
 import Exception from "../../exceptions/Exception.js";
 mongoose.set("strictQuery", true);
 export default async function connect() {
@@ -7,7 +7,6 @@ export default async function connect() {
     let connection = await mongoose.connect(process.env.MONGO_URI);
     print("Kết nối database thành công", OutputType.SUCCESS);
     return connection;
-    debugger
   } catch (e) {
     const { code } = error;
     if (error.code == 8000) {

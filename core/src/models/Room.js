@@ -10,5 +10,6 @@ export default mongoose.model(
     description: { type: String, required: true },
     size: { type: Number, required: true },
     available: { type: Boolean, default: true },
+    image: { type: String },
   })
 );
