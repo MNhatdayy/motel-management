@@ -11,7 +11,7 @@ const FooterComponent = () => {
       <Row gutter={[16, 16]}>
         <Col xs={24} md={6}>
           <Title level={2} className="logo-section">
-            <i className="fa fa-cloud"></i>FloneStore
+          <i class="fa-solid fa-landmark"></i>NTGROUND
           </Title>
           <Space direction="vertical" size="middle">
             <div className="single-contact">
@@ -34,13 +34,13 @@ const FooterComponent = () => {
               <MailOutlined />
               <div className="content">
                 Email:
-                <Link href="#"> sales@flonestore.com</Link>
+                <Link href="#"> sales@ntground.com</Link>
               </div>
             </div>
           </Space>
           <div id="copyright" className="fot_copyright mt-3">
             <span className="wsp">
-              © Bản quyền thuộc về <Link href="#" className="footer-link">FloneStore</Link>
+              © Bản quyền thuộc về <Link href="#" className="footer-link">NTGROUND</Link>
             </span>
           </div>
         </Col>
@@ -48,21 +48,21 @@ const FooterComponent = () => {
           <Title level={3}>Hướng dẫn</Title>
           <ul>
             <li className="instruct-content">
-              <Link href="#huongdanmua">Hướng dẫn mua hàng và thanh toán</Link>
+              <Link href="#huongdanmua">Hướng dẫn đăng ký</Link>
             </li>
             <li className="instruct-content">
-              <Link href="#huongdansudung">Hướng dẫn sử dụng</Link>
+              <Link href="#huongdansudung">Hướng dẫn đặt cọc</Link>
             </li>
             <li className="instruct-content">
-              <Link href="#kiemtradonhang">Kiểm tra đơn hàng</Link>
+              <Link href="#kiemtradonhang">Kiểm tra lịch sử</Link>
             </li>
           </ul>
         </Col>
         <Col xs={24} md={6}>
           <Title level={3}>Chính sách</Title>
           <ul>
-            <li><Link href="#groupbuy">Chính sách Group Buy</Link></li>
-            <li><Link href="#baohanh">Chính sách bảo hành</Link></li>
+            <li><Link href="#groupbuy">Chính sách phòng trọ</Link></li>
+            <li><Link href="#baohanh">Chính sách điều kiện</Link></li>
           </ul>
         </Col>
         <Col xs={24} md={6} className="subscribe-section">

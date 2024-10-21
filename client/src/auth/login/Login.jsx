@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Input, message, ConfigProvider } from "antd";
 
 import { login } from "../../service/authController";
-
+import "./login.scss";
 const Login = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const success = () => {
@@ -94,16 +94,9 @@ const Login = () => {
             <Input.Password />
           </Form.Item>
 
-          <Form.Item
-            name="remember"
-            valuePropName="checked"
-            wrapperCol={{
-              offset: 2,
-              span: 16,
-            }}
-          >
-            <Checkbox>Ghi nhớ tài khoản</Checkbox>
-          </Form.Item>
+          <div className="forgot-password">
+            <Link to={"/auth/forgot"}>Quên mật khẩu?</Link>
+          </div>
 
           <div className="button--wrapper">
             <Button type="primary" htmlType="submit" shape="round" block>

@@ -23,6 +23,8 @@ import UpdateUser from "../pages/management/users/Update";
 import CreateUser from "../pages/management/users/Create";
 import CreateRoom from "../pages/management/rooms/Create";
 import UpdateRoom from "../pages/management/rooms/Update";
+import CreateReview from "../pages/management/reviews/Create";
+import UpdateReview from "../pages/management/reviews/Update";
 
 const { Header, Sider, Content } = Layout;
 const LayoutAdmin = () => {
@@ -125,9 +127,15 @@ const LayoutAdmin = () => {
               <Route path="update/:id" element={<UpdateRoom />} />
               <Route path="create" element={<CreateRoom />} />
             </Route>
-            <Route path="booking" element={<Bookings />} />
+            <Route path="booking">
+              <Route path="" element={<Bookings />} />
+            </Route>
             <Route path="message" element={<Messages />} />{" "}
-            <Route path="review" element={<Reviews />} />
+            <Route path="review">
+              <Route path="" element={<Reviews />} />
+              <Route path="update/:id" element={<UpdateReview />} />
+              <Route path="create" element={<CreateReview />} />
+            </Route>
           </Routes>
         </Content>
       </Layout>

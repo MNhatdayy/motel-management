@@ -54,15 +54,15 @@ const Rooms = () => {
     setRoomIdDelete(id);
     setIsModalOpen(true);
   };
-  const handleOk = () => {
+  const handleOk = async () => {
     try {
-      deleteRoom(roomIdToDelete);
-      message.success("Xóa người dùng thành công!");
-      setIsModalOpen(false);
-      setRoomIdDelete(null);
-      getRooms();
+      await deleteRoom(roomIdToDelete);  // Đảm bảo rằng hành động xóa được thực hiện
+      message.success("Xóa phòng thành công!");
+      setIsModalOpen(false);  // Đóng modal
+      setRoomIdDelete(null);  // Reset roomId sau khi xóa
+      getRooms();  // Gọi lại hàm getRooms để cập nhật danh sách phòng
     } catch (err) {
-      message.error("Lỗi khi xóa người dùng", err.message);
+      message.error(`Lỗi khi xóa phòng: ${err.message}`);
     }
   };
 

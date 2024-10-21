@@ -18,23 +18,19 @@ const menu = [
 	},
 	{
 		key: "rent-room",
-		label: <Link to="/rent-room">Cho thuê phòng trọ</Link>,
+		label: <Link to="/rent-room">Thuê phòng trọ</Link>,
 	},
 	{
 		key: "rent-house",
-		label: <Link to="/rent-house">Nhà cho thuê</Link>,
+		label: <Link to="/rent-house">Thuê nhà</Link>,
 	},
 	{
 		key: "rent-apartment",
-		label: <Link to="/rent-apartment">Cho thuê căn hộ</Link>,
+		label: <Link to="/rent-apartment">Thuê căn hộ</Link>,
 	},
 	{
 		key: "shared-accommodation",
 		label: <Link to="/shared-accommodation">Tìm người ở ghép</Link>,
-	},
-	{
-		key: "hotel-motel",
-		label: <Link to="/hotel-motel">Khách sạn nhà nghỉ</Link>,
 	},
 ];
 
@@ -43,7 +39,7 @@ const MenuStyle = {
 	fontWeight: 500,
 	backgroundColor: '#004a8f',
 	color:'#00b96b',
-	marginRight:100,
+	marginRight:350,
 };
 
 const NavbarComponent = () => {

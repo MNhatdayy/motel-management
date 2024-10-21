@@ -23,6 +23,10 @@ const CreateRoom = () => {
     };
     reader.readAsDataURL(file);
   };
+  const goToCreateRoom = () => {
+  localStorage.setItem("currentPage", page); // Lưu lại trang hiện tại
+  navigate("/admin/room/create");
+};
 
   const onFinish = async (values) => {
     setLoading(true);

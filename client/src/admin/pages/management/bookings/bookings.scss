@@ -1,0 +1,37 @@
+.bookings {
+    padding: 20px;
+
+    .title {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .button-create {
+        margin-bottom: 20px;
+        float: right;
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .button-update {
+        margin-right: 10px;
+    }
+
+    .create-btn {
+        float: right;
+    }
+
+    .pagi {
+        float: right;
+    }
+}

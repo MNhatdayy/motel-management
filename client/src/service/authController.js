@@ -60,3 +60,43 @@ export const parseToken = () => {
 export const logout = function () {
   window.sessionStorage.removeItem("token");
 };
+
+export const forgotPassword = async (email) => {
+  try {
+    const res = await request("POST", "/auth/forgot", {
+      email, // email address to send OTP
+    });
+
+    if (res.status === 200) {
+      console.log("OTP has been sent successfully!");
+      return true;
+    } else {
+      console.error("Failed to send OTP. Please try again.");
+      return false;
+    }
+  } catch (error) {
+    console.error("Error in forgot password:", error.message);
+    return false;
+  }
+};
+
+export const resetPassword = async (email, otp, newPassword) => {
+  try {
+    const res = await request("POST", "/auth/reset", {
+      email,
+      otp,
+      newPassword,
+    });
+
+    if (res.status === 200) {
+      console.log("Password reset successful!");
+      return true;
+    } else {
+      console.error("Failed to reset password. Please try again.");
+      return false;
+    }
+  } catch (error) {
+    console.error("Error in reset password:", error.message);
+    return false;
+  }
+};
