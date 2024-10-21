@@ -80,7 +80,7 @@ Mã OTP: ${otp}
 Lưu ý: Mã OTP này có hiệu lực trong vòng 10 phút. Nếu bạn không thực hiện yêu cầu này, vui lòng bỏ qua email này hoặc liên hệ với chúng tôi để được hỗ trợ.
 
 Trân trọng,
-Nhóm hỗ trợ NT-GROUP`,
+Nhóm hỗ trợ HEHE-GROUP`,
   };
   try {
     await transporter.sendMail(mailOptions);

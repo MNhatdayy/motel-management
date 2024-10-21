@@ -90,4 +90,5 @@ export const roomRepository = {
   deleteRoom,
   getById,
   update,
+  
 };

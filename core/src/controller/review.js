@@ -27,9 +27,9 @@ const getAllReviews = async (req, res) => {
 
 const getReviewById = async (req, res) => {
   try {
-    const review = await Review.findById(req.params.id).populate('roomId userId');
+    const review = await Review.findById(req.params.id);
     if (!review) return res.status(404).json({ message: Exception.REVIEW_NOT_FOUND });
-    res.status(200).json({ message: 'Lấy đánh giá thành công.', data: review });
+    res.status(200).json(review );
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -40,11 +40,15 @@ const createReview = async (req, res) => {
 
   try {
      // Kiểm tra xem phòng có tồn tại không
-     const roomExists = await roomRepository.findById(roomId);
-     if (!roomExists) return res.status(404).json({ message: Exception.ROOM_EXITS });
+     const roomExists = await roomRepository.getById(roomId);
+     if (!roomExists) {
+      throw new Exception(Exception.ROOM_EXITS);
+    }
     // Kiểm tra xem người dùng có tồn tại không
-    const userExists = await userRepository.findById(userId);
-    if (!userExists) return res.status(404).json({ message: Exception.USER_EXITS });
+    const userExists = await userRepository.getById(userId);
+    if (!userExists) {
+      throw new Exception(Exception.USER_EXITS);
+    }
 
     // Tạo đánh giá mới
     const newReview = new Review({

@@ -1,5 +1,7 @@
 import Exception from '../exceptions/Exception.js';
 import Review from '../models/Review.js';
+
+
 const listReviews = async ({
     page = 1,
     limit = 10,
@@ -17,7 +19,6 @@ const listReviews = async ({
             .sort({ [sort]: sortOrder })
             .skip(skip)
             .limit(limitNumber)
-            .populate('userId roomId'); // Populate fields as needed
 
         const totalReviews = await Review.countDocuments(filters);
         const totalPages = Math.ceil(totalReviews / limitNumber);
@@ -36,8 +37,11 @@ const listReviews = async ({
         throw new Exception(Exception.CANNOT_GET_REVIEW);
     }
 };
+const findById = async (reviewId) => {
+    return await Review.findById(reviewId);
+};
 
 export const reviewRepository = {
     listReviews,
-    // Other methods can be added here
+    findById,
 };

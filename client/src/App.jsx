@@ -3,6 +3,7 @@ import { ConfigProvider } from "antd";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./auth/login/Login.jsx";
 import Register from "./auth/register/Register.jsx";
+import Forgot from "./auth/forgot/forgot";
 import { parseToken } from "./service/authController.js";
 import Dashboard from "./admin/pages/dashboard/Dashboard.jsx";
 import LayoutAdmin from "./admin/layout/LayoutAdmin.jsx";
@@ -18,6 +19,9 @@ import UpdateUser from "./admin/pages/management/users/Update.jsx";
 import CreateUser from "./admin/pages/management/users/Create.jsx";
 import CreateRoom from "./admin/pages/management/rooms/Create.jsx";
 import UpdateRoom from "./admin/pages/management/rooms/Update.jsx";
+import ForgotPassword from "./auth/forgot/forgot";
+import ResetPassword from "./auth/reset-password/ResetPassword";
+
 function App() {
   const [isLoggedIn, setLogin] = useState(false);
   const [role, setRole] = useState("");
@@ -57,7 +61,9 @@ function App() {
                   <Route path="update/:id" element={<UpdateRoom />} />
                   <Route path="create" element={<CreateRoom />} />
                 </Route>
-                <Route path="booking" element={<Bookings />} />
+                <Route path="booking">
+                  <Route path="" element={<Bookings />} />
+                </Route>
                 <Route path="message" element={<Messages />} />
                 <Route path="review" element={<Reviews />} />
               </Route>
@@ -70,6 +76,8 @@ function App() {
             <Route path="/auth/*">
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
+              <Route path="forgot" element={<ForgotPassword/>}/>
+              <Route path="reset-password" element={<ResetPassword/>}/>
             </Route>
 
             <Route exact path="/" element={<HomePage />} replace />

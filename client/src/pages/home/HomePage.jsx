@@ -59,22 +59,22 @@ const HomePage = () => {
               <div className="img-slide">
                 <img
                   width="100%"
-                  src="https://bizweb.dktcdn.net/100/484/752/themes/920128/assets/slider_3.jpg?1717509348028"
+                  src="https://www.nhatot.com/_next/image?url=https%3A%2F%2Fcdn.chotot.com%2Fadmincentre%2FzIh0fMVwm4s_oXUjr3qxqkS_yBU5Bkm9DGuLB71FDdk%2Fpreset%3Araw%2Fplain%2F783e1bdb38f0a3d310cfbc68714b37aa-2899704715189481874.jpg&w=1920&q=75"
                   alt=""
                 />
               </div>
               <div className="img-slide">
                 <img
                   width="100%"
-                  src="https://bizweb.dktcdn.net/100/484/752/products/bridge75-render-1-1714960856873.jpg?v=1714967409093"
+                  src="https://www.nhatot.com/_next/image?url=https%3A%2F%2Fcdn.chotot.com%2Fadmincentre%2FF1Iy8pIV295wRSonsdRDkQyFRY2Thcip3egSSilkyBg%2Fpreset%3Araw%2Fplain%2F9b8dc9ce0f6367d20b2b06856688d446-2820459848732268726.jpg&w=1920&q=75"
                   alt=""
                 />
               </div>
               <div className="img-slide">
-                <img
-                  width="100%"
-                  src="https://bizweb.dktcdn.net/thumb/1024x1024/100/484/752/products/qk65v2-classic-case-1-1716989514613.jpg?v=1716989518583"
-                  alt=""
+                  <img
+                    width="100%"
+                    src="https://www.nhatot.com/_next/image?url=https%3A%2F%2Fcdn.chotot.com%2Fadmincentre%2F18EhfuL3oykcfvfCt4A3LRAiZmJNTblWozOlozjKnk0%2Fpreset%3Araw%2Fplain%2F675ac78099c6e75e66bdad87ab9d872e-2900882918942164427.jpg&w=1920&q=75"
+                    alt=""
                 />
               </div>
             </Slider>
@@ -85,40 +85,50 @@ const HomePage = () => {
             <div className="service--wrapper">
               <div className="service--card">
                 <div className="service--img">
-                  <i className="fa-solid fa-truck"></i>
+                <i className="fa-solid fa-credit-card"></i>
                 </div>
                 <div className="service--info">
-                  <h4 className="service--title">Free Shipping</h4>
+                  <h4 className="service--title">Mua bán</h4>
                   <p className="service--description">
-                    Free shipping on all order
+                    <b>153.678</b>
+                    <span>tin đăng mua bán</span>
                   </p>
                 </div>
               </div>
               <div className="service--card">
                 <div className="service--img">
-                  <i className="fa-solid fa-clock"></i>
+                <i className="fa-solid fa-credit-card"></i>
                 </div>
                 <div className="service--info">
-                  <h4 className="service--title">Support Service</h4>
-                  <p className="service--description">Fast & Careful</p>
+                  <h4 className="service--title">Cho thuê</h4>
+                  <p className="service--description">
+                    <b>122.618</b>
+                    <span>tin đăng cho thuê</span>
+                    </p>
                 </div>
               </div>
               <div className="service--card">
                 <div className="service--img">
-                  <i className="fa-solid fa-credit-card"></i>
+                <i class="fa-solid fa-building-user"></i>
                 </div>
                 <div className="service--info">
-                  <h4 className="service--title">VN Pay</h4>
-                  <p className="service--description">Smart pay</p>
+                  <h4 className="service--title">Dự án</h4>
+                  <p className="service--description">
+                    <b>3.998</b>
+                    <span>dự án</span>
+                    </p>
                 </div>
               </div>
               <div className="service--card">
                 <div className="service--img">
-                  <i className="fa-solid fa-tags"></i>
+                <i class="fa-solid fa-user-tie"></i>
                 </div>
                 <div className="service--info">
-                  <h4 className="service--title">Order Discount</h4>
-                  <p className="service--description">Vouncher, sales, gift</p>
+                  <h4 className="service--title">Môi giới</h4>
+                  <p className="service--description">
+                    <b>324</b>
+                    <span>chuyên trang</span>
+                  </p>
                 </div>
               </div>
             </div>

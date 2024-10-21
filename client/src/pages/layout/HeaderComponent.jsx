@@ -11,6 +11,7 @@ import { logout, parseToken } from "../../service/authController";
 const HeaderComponent = () => {
   const [isLoggedIn, setLogin] = useState(false);
   const [userName, setUsername] = useState("");
+  const [userRole, setUserRole] = useState("");
   const [current, setCurrent] = useState("home");
   const navigate = useNavigate();
   //   const onClick = (e) => {
@@ -21,6 +22,7 @@ const HeaderComponent = () => {
     logout();
     setLogin(false);
     setUsername("");
+    setUserRole("");
     return navigate("/");
   };
 
@@ -29,6 +31,7 @@ const HeaderComponent = () => {
     if (tokenInfo !== null) {
       setLogin(true);
       setUsername(tokenInfo.name);
+      setUserRole(tokenInfo.role);
     }
   }, [current]);
 
@@ -55,6 +58,15 @@ const HeaderComponent = () => {
         <i className="fa-solid fa-user menuicon"></i>
         <Link to="/account-info">Thông tin tài khoản</Link>
       </Menu.Item>
+      {userRole === "ADMIN" && (
+        <>
+          <hr />
+          <Menu.Item key="admin-dashboard">
+            <i className="fa-solid fa-cog menuicon"></i>
+            <Link to="/admin/dashboard">Admin Dashboard</Link>
+          </Menu.Item>
+        </>
+      )}
       <hr />
       <Menu.Item key="6" danger onClick={logOut}>
         <i className="fa-solid fa-arrow-right-from-bracket menuicon"></i>Thoát
@@ -66,8 +78,8 @@ const HeaderComponent = () => {
     <div className="header--wrapper">
       <div className="header">
         <div className="header--logo">
-          <i className="fa fa-cloud" aria-hidden="true"></i>
-          <span>RentalStore</span>
+        <i class="fa-solid fa-landmark"></i>
+          <span></span>
         </div>
         <div className="header--actions">
           <div className="header--auth">
